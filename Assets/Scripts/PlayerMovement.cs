@@ -23,6 +23,9 @@ public class PlayerMovement : MonoBehaviour
     private float moveZ;
     private Vector3 move;
 
+    [Range(1, 10)]
+    public float jumpVelocity;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -51,7 +54,12 @@ public class PlayerMovement : MonoBehaviour
             currentSpeed = walkingSpeed;
         }
 
-        
+        if (Input.GetButtonDown("Jump"))
+        {
+            GetComponent<Rigidbody>().velocity = Vector3.up*jumpVelocity;
+        }
+
+
         
         
         if (characterController.isGrounded == true && Input.GetButtonDown("Jump"))
@@ -64,8 +72,8 @@ public class PlayerMovement : MonoBehaviour
         {
             gravity -= 2 * Time.deltaTime;
         }
-
-
-
-}
+        
+        
+    
+    }
 }
