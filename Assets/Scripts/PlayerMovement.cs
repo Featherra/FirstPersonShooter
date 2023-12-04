@@ -56,10 +56,11 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetButtonDown("Jump"))
         {
-            GetComponent<Rigidbody>().velocity = Vector3.up*jumpVelocity;
+            //GetComponent<Rigidbody>().velocity = Vector3.up*jumpVelocity;
         }
 
 
+        
         
         
         if (characterController.isGrounded == true && Input.GetButtonDown("Jump"))
