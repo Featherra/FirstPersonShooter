@@ -7,6 +7,12 @@ using UnityEngine.AI;
 public class PlayerMovement : MonoBehaviour
 {
 
+    public int maxHealth = 20;
+    public int currentHealth;
+
+    public HealthBar healthBar;
+
+
     [SerializeField]
     private float currentSpeed;
     public float walkingSpeed = 7f;
@@ -28,6 +34,10 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
+        currentHealth = maxHealth; // when the game starts. our current health will be the max health.
+        healthBar.SetMaxHealth(maxHealth);
+
+
         rb = GetComponent<Rigidbody>();
         currentSpeed = walkingSpeed;
         baseLineGravity = gravity;
@@ -36,6 +46,14 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if (Input.GetKeyDown(KeyCode.Space)) // if space is pressed. 
+        {
+           
+            
+            TakeDamage(1); // take 1 damage.
+        }
+
       //   Debug.Log(characterController.isGrounded);
 
         moveX = Input.GetAxis("Horizontal") * currentSpeed * Time.deltaTime;
@@ -77,4 +95,12 @@ public class PlayerMovement : MonoBehaviour
         
     
     }
+
+    void TakeDamage(int damage)
+    {
+        currentHealth -= damage;  // when u take damage the current health will be the current health - damage.
+          
+        healthBar.SetHealth(currentHealth);
+    }
+
 }
