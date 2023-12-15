@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
+
 
 public class PlayerMovement : MonoBehaviour
 {
 
-    public int maxHealth = 20;
+    public int maxHealth = 10;
     public int currentHealth;
 
     public HealthBar healthBar;
@@ -74,7 +76,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetButtonDown("Jump"))
         {
-            //GetComponent<Rigidbody>().velocity = Vector3.up*jumpVelocity;
+            GetComponent<Rigidbody>().velocity = Vector3.up*jumpVelocity;
         }
 
 
@@ -101,6 +103,12 @@ public class PlayerMovement : MonoBehaviour
         currentHealth -= damage;  // when u take damage the current health will be the current health - damage.
           
         healthBar.SetHealth(currentHealth);
+
+        if (currentHealth == 0)
+        {
+            SceneManager.LoadScene(2);
+            Cursor.lockState = CursorLockMode.Confined;
+        }
     }
 
 }
