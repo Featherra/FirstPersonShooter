@@ -51,12 +51,12 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space)) // if space is pressed. 
         {
-           
-            
+
+
             TakeDamage(1); // take 1 damage.
         }
 
-      //   Debug.Log(characterController.isGrounded);
+        //   Debug.Log(characterController.isGrounded);
 
         moveX = Input.GetAxis("Horizontal") * currentSpeed * Time.deltaTime;
         moveZ = Input.GetAxis("Vertical") * currentSpeed * Time.deltaTime;
@@ -108,7 +108,16 @@ public class PlayerMovement : MonoBehaviour
         {
             SceneManager.LoadScene(2);
             Cursor.lockState = CursorLockMode.Confined;
-        }
+        } 
+         
+   
+        
+   
     }
+
+
+
+
+   
 
 }
